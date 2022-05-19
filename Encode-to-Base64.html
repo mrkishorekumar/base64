@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 - Encode to Base64 format</title>
+    <link rel="icon" type="image/x-icon" href="base64.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="base64.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Base64
+              </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Privacy-Policy.html">Privacy Policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Terms-and-Conditions.html">Terms and Conditions </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Other Tools
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="online-screen-recorder.html">Online Screen Recorder</a></li>
+                            <li><a class="dropdown-item" href="#">Encode to Base64</a></li>
+                            <li><a class="dropdown-item" href="ASCII-Table.html">ASCII Table</a></li>                        
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="d-flex justify-content-center">
+        <div class="d-flex align-items-center">
+            <div class="d-flex flex-column mt-5">
+                <div class="p-2">
+                    <h2 class="text-center">Encode to Base64 format</h2>
+                    <p class="text-center">Simply enter your data then push the encode button.</p>
+                </div>
+                <div class="form-floating">
+                    <textarea id="encodingValue" class="form-control" placeholder="Leave a comment here"
+                        id="floatingTextarea2" style="height: 100px" required></textarea>
+                    <label for="floatingTextarea2">Type (or Paste) here...</label>
+                </div>
+                <div class="p-2">
+                    <div class="input-group mb-3">
+                        <textarea class="form-control" style="height: 100px" id="encodingResult"></textarea>
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="Copy1()"
+                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">Copy</button>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <button onclick="encoding()" type="button" class="btn btn-primary">Encode</button>
+                </div>
+                <div class="p-2">
+                    <h5 ></h5>
+                </div>
+                <div class="p-2">
+                    <h2 class="text-center">Image to Base64 format</h2>
+                    <p class="text-center">Select file to upload and convert into base64 string.</p>
+                    <div>
+                        <label for="fileUpload" class="form-label">Choose file:</label>
+                        <input class="form-control form-control-lg" id="fileUpload" accept="image/*" type="file" name="fileUpload" />
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="input-group mb-3">
+                        <textarea class="form-control" style="height: 100px" id="fileout"></textarea>
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="Copy()"
+                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">Copy</button>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Message from Base64</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Text Copied
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <button type="button" class="btn btn-outline-primary" id="jsonConvert">Convert</button>
+                </div>
+                <div class="p-2">
+                    <p class="text-muted">
+                        Decode from Base64 format <a href="#" class="text-reset">Click Here</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="text-center mt-5">
+        <p>
+            &#169; 2022 base64.co.in
+        </p>
+    </div>
+</body>
+<script type="text/javascript">
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    $('#jsonConvert').click(function () {
+        const uploadedFile = document.querySelector('#fileUpload').files[0];
+        toBase64(uploadedFile)
+            .then(res => {
+                console.log(res);
+                document.getElementById("fileout").innerHTML = res;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    });
+
+</script>
+
+</html>

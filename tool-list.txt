@@ -1,0 +1,2 @@
+1.Encode to Base64 format & Image to Base64 format
+2.
