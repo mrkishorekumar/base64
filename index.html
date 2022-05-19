@@ -12,6 +12,7 @@
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 
 <body>
@@ -67,20 +68,78 @@
                     <h1 id="encodingResult"></h1>
                 </div>
                 <div class="p-2">
+                    <h2 class="text-center">File to Base64 format</h2>
+                    <p class="text-center">Select file to upload and convert into base64 string.</p>
+                    <div>
+                        <label for="fileUpload" class="form-label">Choose file:</label>
+                        <input class="form-control form-control-lg" id="fileUpload" type="file" name="fileUpload" />
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="input-group mb-3">
+                        <textarea class="form-control" style="height: 100px" id="fileout"></textarea>
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="Copy()"
+                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">Copy</button>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Message from Base64</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Text Copied
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <button type="button" class="btn btn-outline-primary" id="jsonConvert">Convert</button>
+                </div>
+                <div class="p-2">
                     <p class="text-muted">
                         Decode from Base64 format <a href="#" class="text-reset">Click Here</a>.
-                      </p>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
     <div class="text-center mt-5">
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae nihil hic
-          delectus excepturi ipsam reprehenderit iusto rem, quam, repellendus accusantium culpa
-          reiciendis sit dolorum aut aperiam a architecto. Fuga, sit.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae nihil hic
+            delectus excepturi ipsam reprehenderit iusto rem, quam, repellendus accusantium culpa
+            reiciendis sit dolorum aut aperiam a architecto. Fuga, sit.
         </p>
-      </div>
+    </div>
 </body>
+<script type="text/javascript">
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    $('#jsonConvert').click(function () {
+        const uploadedFile = document.querySelector('#fileUpload').files[0];
+        toBase64(uploadedFile)
+            .then(res => {
+                console.log(res);
+                document.getElementById("fileout").innerHTML = res;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    });
+
+</script>
 
 </html>
